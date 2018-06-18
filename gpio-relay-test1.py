@@ -17,7 +17,7 @@ GPIO.setmode(GPIO.BCM)
 
 # initiate list with pin gpio pin numbers
 
-gpioList = [26, 19, 13, 06, 12, 16, 20, 21]
+gpioList = [20]
 
 for i in gpioList:
     GPIO.setup(i, GPIO.OUT)
