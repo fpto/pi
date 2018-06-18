@@ -25,8 +25,8 @@ for i in gpioList:
 
 # Sleep time variables
 
-sleepTimeShort = 0.2
-sleepTimeLong = 0.1
+sleepTimeShort = 2
+sleepTimeLong = 1
 
 # MAIN LOOP =====
 # ===============
