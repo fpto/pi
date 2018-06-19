@@ -39,14 +39,16 @@ def job():
             GPIO.output(i, GPIO.HIGH)
             time.sleep(sleepTimeLong);
 
+    except KeyboardInterrupt:
+        print " Quit"
+        
 schedule.every(1).minute.do(job)
 
 while True:
     schedule.run_pending()
     time.sleep(10)
 # End program cleanly with keyboard
-except KeyboardInterrupt:
-    print " Quit"
+
 
     # Reset GPIO settings
 
