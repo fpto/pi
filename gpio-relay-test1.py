@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
+import schedule
 
 GPIO.setmode(GPIO.BCM)
 
@@ -17,7 +18,7 @@ GPIO.setmode(GPIO.BCM)
 
 # initiate list with pin gpio pin numbers
 
-gpioList = [20]
+gpioList = [26, 20]
 
 for i in gpioList:
     GPIO.setup(i, GPIO.OUT)
@@ -25,21 +26,24 @@ for i in gpioList:
 
 # Sleep time variables
 
-sleepTimeShort = 2
+sleepTimeShort = 4
 sleepTimeLong = 1
 
 # MAIN LOOP =====
 # ===============
-
-try:
-    while True:
+def job():
+    try:
         for i in gpioList:
             GPIO.output(i, GPIO.LOW)
             time.sleep(sleepTimeShort);
             GPIO.output(i, GPIO.HIGH)
             time.sleep(sleepTimeLong);
 
+schedule.every(1).minute.do(job)
 
+while True:
+    schedule.run_pending()
+    time.sleep(10)
 # End program cleanly with keyboard
 except KeyboardInterrupt:
     print " Quit"
