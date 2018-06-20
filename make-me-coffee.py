@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 import schedule
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 # GPIO | Relay
 #--------------
@@ -18,13 +18,16 @@ GPIO.setmode(GPIO.BCM)
 
 # initiate list with pin gpio pin numbers
 
-i = 26
+i = 37
 
 GPIO.setup(i, GPIO.OUT)
+GPIO.output(i, GPIO.HIGH)
 
 # Sleep time variables
 
-brewingTime = 10
+brewingTime = 120
+# Fastest is 2 cups in 100 seconds
+# Medium is 2 cups in  
 
 # MAIN LOOP =====
 # ===============
@@ -37,8 +40,8 @@ def job():
     except KeyboardInterrupt:
         print " Quit"
         GPIO.cleanup()
-
-schedule.every().minute.do(job)
+# Time needs to consider 6 hours difference
+schedule.every().day.at("12:30").do(job)
 
 while True:
     schedule.run_pending()
