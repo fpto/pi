@@ -20,9 +20,7 @@ GPIO.setmode(GPIO.BCM)
 
 i = 26
 
-
-    GPIO.setup(i, GPIO.OUT)
-    GPIO.output(i, GPIO.HIGH)
+GPIO.setup(i, GPIO.OUT)
 
 # Sleep time variables
 
@@ -32,9 +30,9 @@ brewingTime = 10
 # ===============
 def job():
     try:
-        GPIO.output(i, GPIO.HIGH)
+	GPIO.output(i, GPIO.LOW)
         time.sleep(brewingTime);
-        GPIO.output(i, GPIO.LOW)
+        GPIO.output(i, GPIO.HIGH)
 
     except KeyboardInterrupt:
         print " Quit"
